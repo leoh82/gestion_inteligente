@@ -17,6 +17,12 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get("/health", (req, res) =>{
+    res.json({
+        status:"ok"
+    });
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
