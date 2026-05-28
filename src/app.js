@@ -3,6 +3,7 @@ import {pool} from "./database/db.js"
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import assetsRoutes from "./routes/assets.routes.js"
 
 
 
@@ -14,6 +15,8 @@ const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
+
+app.use("/assets", assetsRoutes);
 
 pool.connect()
     .then(()=>{
