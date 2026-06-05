@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import assetsRoutes from "./routes/assets.routes.js"
+import { errorHandler } from "./middlewares/errorHandler.js";
 
 
 
@@ -17,6 +18,8 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.use("/assets", assetsRoutes);
+
+app.use(errorHandler);
 
 pool.connect()
     .then(()=>{
@@ -40,6 +43,7 @@ app.get("/health", (req, res) =>{
 
 
 const PORT = process.env.PORT || 3000;
+
 
 app.listen(PORT, () => {
     console.log(`servidor corriendo en puerto ${PORT}`);
