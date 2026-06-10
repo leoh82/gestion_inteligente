@@ -5,21 +5,19 @@ import cors from "cors";
 import morgan from "morgan";
 import assetsRoutes from "./routes/assets.routes.js"
 import { errorHandler } from "./middlewares/errorHandler.js";
-
-
-
+import authRoutes from "./routes/auth.routes.js";
 
 dotenv.config();
-
 const app = express();
+app.use(express.json());
 
 app.use(cors());
 app.use(morgan("dev"));
-app.use(express.json());
+
 
 app.use("/assets", assetsRoutes);
+app.use("/auth", authRoutes);
 
-app.use(errorHandler);
 
 pool.connect()
     .then(()=>{
@@ -48,3 +46,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`servidor corriendo en puerto ${PORT}`);
 });
+app.use(errorHandler);
