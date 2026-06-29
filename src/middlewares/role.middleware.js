@@ -6,7 +6,7 @@ export const authorize = (...roles) => {
       return next(error);
     }
 
-    if (!roles.includes(req.user.roles)) {
+    if (!roles.includes(req.user.role)) {
         const error = new Error("No tiene permisos suficientes");
         error.StatusCode = 403;
         return next(error);
